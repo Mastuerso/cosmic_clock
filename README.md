@@ -20,6 +20,18 @@ The app switches colors based on the hour of the day, from 6 hours to 17:59 hour
  while at 18 hours and before 6 hours it uses a light orange color scheme dominated by the color #f27916
  <div style="background-color: #f27916 ; width: 20px; height: 20px;"> </div>
 
+ ## HOW TO RUN?
+
+*Before running make sure that you have a copy of the  [Flutter clock helper package](https://github.com/flutter/flutter_clock/tree/master/flutter_clock_helper)
+
+>path/to/cosmic_clock/
+
+>flutter create .
+
+>flutter run
+
+
+
 
 
 
