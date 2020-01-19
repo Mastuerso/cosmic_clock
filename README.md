@@ -1,7 +1,7 @@
 # Cosmic Clock
 
 This a polar clock.
- ---
+---
 From the [Flutter clock repo @ github](https://github.com/flutter/flutter_clock) this clock implements the hour format contained in the  [Flutter clock helper package](https://github.com/flutter/flutter_clock/tree/master/flutter_clock_helper) so it is **_needed_** in order for it to work properly.
 ---
  
