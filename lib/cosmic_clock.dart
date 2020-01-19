@@ -17,6 +17,7 @@ class CosmicClock extends StatefulWidget {
 }
 
 class _CosmicClockState extends State<CosmicClock> {
+  DateTime _dateTime = DateTime.now();
   // Custom animation Controllers
   CometController _cometController;
   SunController _sunController;
@@ -59,11 +60,14 @@ class _CosmicClockState extends State<CosmicClock> {
     setState(() {
       // the clock is ticking
       _timer = Timer(
-        Duration(seconds: 1),
+        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
       _cometController.fullDay = widget.model.is24HourFormat;
       _sunController.fullDay = widget.model.is24HourFormat;
+
+      _cometController.dateTime = _dateTime;
+      _sunController.dateTime = _dateTime;
     });
   }
 

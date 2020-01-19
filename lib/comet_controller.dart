@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 class CometController extends FlareController {
   //Animations: Flow / Rotate / Color / Blink
-  DateTime _dateTime;
+  DateTime dateTime;
   bool fullDay = true;
   int _colorTicker;
 
@@ -32,7 +32,7 @@ class CometController extends FlareController {
       _cometColor = FlareAnimationLayer()
         ..animation = _artboard.getAnimation('Color')
         ..mix = 1.0;
-      _colorTicker = DateTime.now().hour;
+      _colorTicker = dateTime.hour;
       if (_colorTicker >= 6 && _colorTicker < 18) {
         _cometColor.time = 0;
       } else if (_colorTicker >= 18 || _colorTicker < 6) {
@@ -61,7 +61,7 @@ class CometController extends FlareController {
       _starsBlink.time = (_starsBlink.time + elapsed) % _starsBlink.duration;
       _starsBlink.apply(artboard);
 
-      _colorTicker = DateTime.now().hour;
+      _colorTicker = dateTime.hour;
       if (_colorTicker >= 6 && _colorTicker < 18) {
         _cometColor.time = 0;
       } else if (_colorTicker >= 18 || _colorTicker < 6) {
@@ -76,13 +76,11 @@ class CometController extends FlareController {
 
   double timePercentage() {
     // Advance the animation following time
-    _dateTime = DateTime.now();
     double percentage;
-    int hour = fullDay
-        ? _dateTime.hour
-        : int.parse(DateFormat('hh').format(_dateTime));
-    int minute = _dateTime.minute;
-    int second = _dateTime.second;
+    int hour =
+        fullDay ? dateTime.hour : int.parse(DateFormat('hh').format(dateTime));
+    int minute = dateTime.minute;
+    int second = dateTime.second;
     if (fullDay) {
       percentage = second / (59 * 59 * 23) + minute / (59 * 23) + hour / 23;
     } else {

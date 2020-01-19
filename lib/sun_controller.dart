@@ -13,6 +13,7 @@ class SunController extends FlareController {
   var _luckyStar = Random();
   int _trigger;
   bool _jackpot = false;
+  DateTime dateTime;
 
   FlutterActorArtboard _artboard;
 
@@ -38,7 +39,7 @@ class SunController extends FlareController {
       _sunColor = FlareAnimationLayer()
         ..animation = _artboard.getAnimation('color')
         ..mix = 1.0;
-      _colorTicker = DateTime.now().hour;
+      _colorTicker = dateTime.hour;
       if (_colorTicker >= 6 && _colorTicker < 18) {
         _sunColor.time = 0;
       } else if (_colorTicker >= 18 || _colorTicker < 6) {
@@ -47,7 +48,7 @@ class SunController extends FlareController {
       _miniSun = FlareAnimationLayer()
         ..animation = _artboard.getAnimation('sunny')
         ..mix = 1.0;
-      _ticker = ((DateTime.now().minute / 59) * _miniSun.duration) ~/ 1;
+      _ticker = ((dateTime.minute / 59) * _miniSun.duration) ~/ 1;
       _miniSun.time = (_ticker).toDouble();
       _meteorMove = FlareAnimationLayer()
         ..animation = _artboard.getAnimation('meteor_move')
@@ -69,7 +70,7 @@ class SunController extends FlareController {
       _sunTexture.time = (_sunTexture.time + elapsed) % _sunTexture.duration;
       _sunTexture.apply(artboard);
       // changing the color based on time of day
-      _colorTicker = DateTime.now().hour;
+      _colorTicker = dateTime.hour;
       if (_colorTicker >= 6 && _colorTicker < 18) {
         _sunColor.time = 0;
       } else if (_colorTicker >= 18 || _colorTicker < 6) {
@@ -78,7 +79,7 @@ class SunController extends FlareController {
       _sunColor.mix = 0.1;
       _sunColor.apply(artboard);
       //controlling the animation so it stops and advance when needed
-      _ticker = ((DateTime.now().minute / 59) * _miniSun.duration) ~/ 1;
+      _ticker = ((dateTime.minute / 59) * _miniSun.duration) ~/ 1;
       //print('timeSeconds: $_ticker');
       _miniSun.time = (_ticker).toDouble();
       _miniSun.mix = 0.1;
